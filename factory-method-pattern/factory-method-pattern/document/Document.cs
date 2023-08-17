@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace factory_method_pattern.document
 {
-    public abstract class Document
+    public class Document
     {
         private String _name;
         private List<Page> _pages;
@@ -17,6 +17,12 @@ namespace factory_method_pattern.document
         public Document()
         {
             _name = "Document";
+            _pages = new List<Page>();
+        }
+        
+        public Document(string name)
+        {
+            _name = name;
             _pages = new List<Page>();
         }
 

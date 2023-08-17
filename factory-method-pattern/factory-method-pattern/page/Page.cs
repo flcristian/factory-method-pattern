@@ -6,22 +6,28 @@ using System.Threading.Tasks;
 
 namespace factory_method_pattern.page
 {
-    public abstract class Page
+    public class Page
     {
-        private String _name;
-        private String _content;
+        private string _name;
+        private string _content;
 
         // Constructors
 
-        public Page(String content)
+        public Page(string content)
         {
             _name = "Article";
             _content = content;
         }
 
+        public Page(string name, string content)
+        {
+            _name = name;
+            _content = content;
+        }
+
         // Accessors
 
-        public String Name
+        public string Name
         {
             get { return _name; }
             set
@@ -30,7 +36,7 @@ namespace factory_method_pattern.page
             }
         }
 
-        public String Content
+        public string Content
         {
             get { return _content; }
             set
@@ -46,7 +52,7 @@ namespace factory_method_pattern.page
             return (obj as Page)._name == _name && (obj as Page)._content == _content;
         }
 
-        public override String ToString()
+        public override string ToString()
         {
             return $"{_name}:\n{_content}\n";
         }

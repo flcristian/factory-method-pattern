@@ -13,9 +13,22 @@ namespace factory_method_pattern.document
         {
             Name = "Report";
 
-            Pages.Add(new IntroductionPage("introduction"));
-            Pages.Add(new SummaryPage("summary"));
-            Pages.Add(new BibliographyPage("bibliography"));
+            IPageFactory pageFactory = new PageFactory();
+
+            Pages.Add(pageFactory.CreatePage("Introduction/Introduction"));
+            Pages.Add(pageFactory.CreatePage("Summary/Summary"));
+            Pages.Add(pageFactory.CreatePage("Bibliography/Bibliography"));
+        }
+        public Report(string text)
+        {
+            string[] data = text.Split('/');
+            Name = data[0];
+
+            IPageFactory pageFactory = new PageFactory();
+
+            Pages.Add(pageFactory.CreatePage($"Introduction/{data[1]}"));
+            Pages.Add(pageFactory.CreatePage($"Summary/{data[2]}"));
+            Pages.Add(pageFactory.CreatePage($"Bibliography/{data[3]}"));
         }
     }
 }
